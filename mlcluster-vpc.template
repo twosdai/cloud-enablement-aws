@@ -355,17 +355,17 @@ Mappings:
       base: '10.0-7.1'
   LicenseRegion2AMI:
     us-east-1:
-      Enterprise: ami-0db5b7ad67475b03d
-      BYOL: ami-07fb462e56ca41d78
+      Enterprise: ami-0b90a3c68affe7b16
+      BYOL: ami-0b90a3c68affe7b16
     us-east-2:
-      Enterprise: ami-0dcafd817d8ad2456
-      BYOL: ami-0ba82ff05995d1cc2
+      Enterprise: ami-0b90a3c68affe7b16
+      BYOL: ami-0b90a3c68affe7b16
     us-west-1:
-      Enterprise: ami-0551d39217f351a5d
-      BYOL: ami-0543fe1bbcdf41804
+      Enterprise: ami-0b90a3c68affe7b16
+      BYOL: ami-0b90a3c68affe7b16
     us-west-2:
-      Enterprise: ami-039d2568f28367c9d
-      BYOL: ami-0884ee82b131fd868
+      Enterprise: ami-0b90a3c68affe7b16
+      BYOL: ami-0b90a3c68affe7b16
     eu-central-1:
       Enterprise: ami-077f4fdc9dc3292ca
       BYOL: ami-0413650e5fac4e323
@@ -834,7 +834,11 @@ Resources:
       UserData: !Base64
         'Fn::Join':
           - ''
-          - - MARKLOGIC_CLUSTER_NAME=
+          - - "#!/bin/bash \n" 
+            - "aws s3 cp s3://mlcmd-rpm/mlcmd-v2-1.x86_64.rpm ~/mlcmd.rpm && rpm -i --force ~/mlcmd.rpm"
+            - |+
+
+            - MARKLOGIC_CLUSTER_NAME=
             - !Ref MarkLogicDDBTable
             - |+
 
@@ -914,7 +918,11 @@ Resources:
       UserData: !Base64
         'Fn::Join':
           - ''
-          - - MARKLOGIC_CLUSTER_NAME=
+          - - "#!/bin/bash \n" 
+            - "aws s3 cp s3://mlcmd-rpm/mlcmd-v2-1.x86_64.rpm ~/mlcmd.rpm && rpm -i --force ~/mlcmd.rpm"
+            - |+
+          
+            - MARKLOGIC_CLUSTER_NAME=
             - !Ref MarkLogicDDBTable
             - |+
 
@@ -994,7 +1002,11 @@ Resources:
       UserData: !Base64
         'Fn::Join':
           - ''
-          - - MARKLOGIC_CLUSTER_NAME=
+          - - "#!/bin/bash \n" 
+            - "aws s3 cp s3://mlcmd-rpm/mlcmd-v2-1.x86_64.rpm ~/mlcmd.rpm && rpm -i --force ~/mlcmd.rpm"
+            - |+
+            
+            - MARKLOGIC_CLUSTER_NAME=
             - !Ref MarkLogicDDBTable
             - |+
 
